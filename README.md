@@ -14,8 +14,9 @@ Entreprise retenue : **[Bearstech](https://bearstech.com)**, SCOP française d'h
 3. [Ce qui est moins bien — les limites](#3-ce-qui-est-moins-bien--les-limites)
 4. [Mesures : leur site est-il léger ?](#4-mesures--leur-site-est-il-léger-)
 5. [Comparaison avec d'autres entreprises](#5-comparaison-avec-dautres-entreprises)
-6. [L'angle retenu pour la présentation](#6-langle-retenu-pour-la-présentation)
-7. [Sources](#7-sources)
+6. [Chartes, engagements et certifications](#6-chartes-engagements-et-certifications)
+7. [L'angle retenu pour la présentation](#7-langle-retenu-pour-la-présentation)
+8. [Sources](#8-sources)
 
 ---
 
@@ -256,7 +257,117 @@ C'est exactement ce que Bearstech ne fait pas. Et c'est faisable à petite éche
 
 ---
 
-## 6. L'angle retenu pour la présentation
+## 6. Chartes, engagements et certifications
+
+Recherche **plein texte sur les 353 pages du site** (sitemap complet aspiré le 21/09/2026, script reproductible). Les faux positifs de sous-chaîne ont été écartés manuellement en relisant chaque occurrence en contexte.
+
+### 6.1 Chartes et engagements : le résultat est net
+
+| Document recherché | Occurrences | Verdict |
+|---|---|---|
+| **Pacte Mondial ONU** / Global Compact | **0** | ❌ absent |
+| **Charte d'engagement environnemental** | **0** | ❌ absente |
+| **Charte / code de conduite fournisseurs** | **0** | ❌ absente |
+| **Charte d'achats responsables** | **0** | ❌ absente |
+| **Code de conduite anticorruption** | **0** | ❌ absent |
+| Déontologie | **0** | ❌ absent |
+| Lanceur d'alerte | **0** | ❌ absent |
+| Devoir de vigilance | **0** | ❌ absent |
+| Loi Sapin (II) | **0** | ❌ absent |
+| Parties prenantes | 1 | ⚠️ contexte technique (page PRA) |
+
+**Faux positifs écartés :**
+- « corruption » → 3 pages, mais il s'agit de *corruption de données* et *corruption mémoire* (articles Docker, object storage, Rustls). Rien à voir avec l'anticorruption.
+- « éthique » → 10 pages, toujours au sens philosophique : « un choix technique et **éthique** » à propos de Debian, « un service **éthique**, transparent » à propos du logiciel libre. **Jamais une charte éthique d'entreprise.**
+- « charte » → 2 pages, dont une « **charte graphique** » citée en exemple de ce qu'ils ne font pas.
+
+### 6.2 La seule charte qui existe : la charte IA, et elle n'est pas publiée
+
+Un seul document de ce type est mentionné sur tout le site, dans un article du **24 juillet 2026** :
+
+> « Nous terminons donc la rédaction de notre **charte IA**, qui précise comment nous avons le droit d'utiliser ces outils. »
+
+> « Notre charte IA est donc **entièrement orientée sécurité**. »
+
+Elle définit « quelles données peuvent être envoyées à un LLM, dans quel cadre, selon quel niveau de confidentialité ». Donc :
+
+- c'est une charte **d'usage interne**, pas un engagement envers des partenaires ou fournisseurs ;
+- elle est **orientée sécurité**, pas RSE, pas éthique des affaires ;
+- à la date de l'article elle était **encore en cours de rédaction** ;
+- elle **n'est pas publiée**.
+
+### 6.3 Certifications : l'inventaire
+
+| Norme | Bearstech | Statut réel |
+|---|---|---|
+| **ISO 27001** (sécurité de l'information) | ❌ | 3 pages en parlent, **jamais comme leur certification** : ils évoquent « les exigences de la norme » ou le besoin d'un client. Une page écrit même « cela vaut tous les ISO 27001 » — ton plutôt distant vis-à-vis de la démarche. |
+| **ISO 14001** (management environnemental) | ❌ | 0 occurrence |
+| **ISO 9001** (qualité) | ❌ | 0 occurrence |
+| **ISO 50001** (énergie) | ❌ | 0 occurrence |
+| **EMAS** (règlement européen d'éco-audit) | ❌ | 0 occurrence *(le seul « match » était `storage-sch**emas**.conf` dans un tuto Graphite)* |
+| **AFNOR / AFAQ 26000 / Label Engagé RSE** | ❌ | 0 occurrence |
+| **EcoVadis** | ❌ | 0 occurrence |
+
+### 6.4 ⚠️ Point méthodologique : « avoir l'ISO 26000 » n'existe pas
+
+À corriger dans la présentation si la question tombe — c'est un piège classique de jury.
+
+**ISO 26000 n'est pas certifiable.** C'est une norme de *lignes directrices* : contrairement à ISO 9001, ISO 14001 ou ISO 45001, elle **ne contient aucune exigence vérifiable par audit externe**. Aucune entreprise au monde ne peut donc être « certifiée ISO 26000 ».
+
+Ce qui existe à la place, en France, via l'AFNOR :
+
+- **AFAQ 26000** — une **évaluation** (créée en 2011), pas une certification, qui positionne l'entreprise sur une échelle de maturité.
+- **Label Engagé RSE** — créé en **2021**, dérivé d'ISO 26000 et du GRI, **explicitement conçu pour les PME et les entreprises de moins de 50 salariés**. 8 chapitres, 55 critères, 4 niveaux (initial / progression / confirmé / exemplaire).
+
+> **C'est la recommandation naturelle de ce travail** : le label Engagé RSE est exactement dimensionné pour une structure comme Bearstech. Ils ont déjà la matière (gouvernance SCOP, GreenOps chiffré, écart salarial 1 à 2) — il leur manque uniquement la formalisation et l'audit tiers.
+
+### 6.5 Rien de tout cela ne leur est légalement obligatoire
+
+C'est l'argument de défense à donner, et il est factuel :
+
+| Obligation | Seuil légal | Bearstech (~15 salariés, 1,41 M€ CA) |
+|---|---|---|
+| **Code de conduite anticorruption** (loi Sapin II, art. 17) | ≥ 500 salariés **ET** > 100 M€ de CA *(critères cumulatifs)* | ❌ **non assujettie** |
+| **Devoir de vigilance** (loi de 2017) | ≥ 5 000 salariés en France ou 10 000 dans le monde | ❌ non assujettie |
+| **CSRD** (reporting de durabilité) | seuils européens grandes entreprises | ❌ non assujettie |
+| **BEGES** (bilan GES réglementaire) | ≥ 500 salariés | ❌ non assujettie |
+
+Donc l'absence de charte anticorruption **n'est pas une faute** : c'est le régime normal d'une TPE. En revanche, l'absence de charte fournisseurs ou d'engagement environnemental formalisé reste un **choix**, pas une contrainte — et c'est là que la critique est légitime.
+
+### 6.6 Comparaison des certifications
+
+| | **Bearstech** | **Enix** | **Scaleway** |
+|---|---|---|---|
+| ISO 27001 | ❌ | ✅ badge affiché en pied de page | ✅ **ISO/IEC 27001:2022** |
+| ISO 27701 (données perso) | ❌ | ❌ | ✅ |
+| ISO 50001 (énergie) | ❌ | ❌ | ✅ |
+| HDS (données de santé) | ❌ | ❌ | ✅ |
+| SecNumCloud (ANSSI) | ❌ | ❌ | ⚠️ en cours (jalon J0 validé) |
+| ISO 14001 | ❌ | ❌ | ❌ |
+| EMAS | ❌ | ❌ | ❌ |
+| ISO 26000 | *non certifiable* | *non certifiable* | *non certifiable* |
+| EcoVadis | ❌ | ❌ | ✅ **Gold** (top 5 %) |
+| Objectif climat validé SBTi | ❌ | ❌ | ✅ −90 % d'ici 2050 |
+| Charte fournisseurs / code éthique | ❌ | ❌ | ✅ **via le groupe Iliad** |
+| Rapport RSE annuel public | ❌ | ❌ | ✅ depuis 2018 |
+
+**Trois lectures de ce tableau :**
+
+1. **Bearstech est le seul des trois sans aucune certification.** Même Enix, de taille comparable (20–49 salariés), a décroché ISO 27001. L'argument « on est trop petits » ne tient donc pas complètement.
+2. **Nuance sur Enix :** la certification est affichée sous forme de **logo en pied de page**, sans numéro de certificat ni périmètre publié. C'est une revendication, pas une preuve consultable.
+3. **Scaleway hérite de son groupe.** Son espace fournisseurs (Iliad) contient code de conduite, code anticorruption, code éthique et charte de relations partenaires. Une filiale d'un grand groupe dispose de cet arsenal « gratuitement » — c'est un effet de structure, pas de vertu.
+
+### 6.7 Ce qu'il faut en retenir pour la présentation
+
+> Bearstech pratique **sans formaliser**, et formalise **sans faire certifier**. Sur les trois niveaux de preuve — *dire* / *documenter* / *faire auditer* — ils s'arrêtent au premier.
+
+C'est défendable pour une TPE, et ça devient un vrai angle critique quand on le met en regard de leur discours : ils publient des chiffres précis (PUE 1,36, 2,5 tCO₂e/salarié, écart salarial 1 à 2) **sans aucun tiers pour les valider**. Scaleway affiche des chiffres du même ordre (PUE 1,37) mais les fait auditer par EcoVadis et valider par la SBTi.
+
+**La différence entre les deux n'est pas la performance. C'est la preuve.**
+
+---
+
+## 7. L'angle retenu pour la présentation
 
 Plutôt que de présenter Bearstech comme un « leader SRE » — ce qui serait faux et se verrait à la première question du jury — le travail utilise le **SRE comme grille d'analyse** :
 
@@ -269,7 +380,7 @@ Plutôt que de présenter Bearstech comme un « leader SRE » — ce qui serait 
 
 ---
 
-## 7. Sources
+## 8. Sources
 
 **Bearstech**
 - [Site](https://bearstech.com) · [La SCOP](https://bearstech.com/societe/scop) · [Nos valeurs](https://bearstech.com/societe/nos-valeurs)
@@ -290,6 +401,14 @@ Plutôt que de présenter Bearstech comme un « leader SRE » — ce qui serait 
 
 **Clever Cloud**
 - [Postmortems publics](https://www.clever.cloud/developers/postmortem/) · [Postmortem du 02/08/2024](https://www.clever.cloud/developers/postmortem/2024-08-02/) · [Historique des incidents](https://status.clever.com/history)
+
+**Chartes, normes et obligations légales**
+- [ISO 26000 — Groupe AFNOR](https://www.afnor.org/en/corporate-social-responsibility/iso-26000-approach/) · [Label Engagé RSE — AFNOR Certification](https://certification.afnor.org/en/sustainable-development-csr/corporate-social-responsibility-commitment-label)
+- [L'ISO 26000 est-elle certifiable ?](https://way2xl.fr/le-blog/rse-et-certification-liso-26000-est-elle-certifiable)
+- [Article 17 de la loi Sapin 2 — LexisNexis](https://www.lexisnexis.com/fr-fr/glossaire/article-17-loi-sapin-2) · [Loi Sapin 2, entreprises concernées et seuils](https://www.leto.legal/guides/loi-sapin-2-entreprises-concernees)
+- [Charte Relations fournisseurs et achats responsables — economie.gouv.fr](https://www.economie.gouv.fr/mediateur-des-entreprises/la-charte-relations-fournisseurs-et-achats-responsables)
+- [Espace fournisseurs Iliad](https://fournisseurs.iliad.fr/login) · [Sécurité et conformité — Scaleway](https://www.scaleway.com/en/security-and-compliance/)
+- [Bearstech — PME : l'IA passe en production](https://bearstech.com/blog/pme-lia-passe-en-production) (24/07/2026, mention de la charte IA)
 
 **SRE — références**
 - [Google SRE](https://sre.google/) · [SRE Book](https://sre.google/sre-book/introduction/) · [Postmortem culture](https://sre.google/sre-book/postmortem-culture/)
